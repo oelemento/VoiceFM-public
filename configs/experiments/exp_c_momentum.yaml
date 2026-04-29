@@ -1,0 +1,7 @@
+# Experiment C: Momentum encoder + queue
+# EMA copy of model produces consistent embeddings for the memory queue
+# This is the proper MoCo approach — fixes the stale embedding problem from Runs 4-6
+training:
+  queue_size: 256
+  use_momentum_encoder: true
+  momentum_decay: 0.999

@@ -1,0 +1,7 @@
+# Experiment F: Unfreeze more HuBERT layers (6-11 instead of 9-11)
+# freeze_layers=5 means freeze layers 0-5, fine-tune 6-11 (6 layers vs 3)
+# More capacity to adapt HuBERT representations to voice biomarker task
+# Risk: more trainable params, may need more data to avoid overfitting
+model:
+  audio_encoder:
+    freeze_layers: 5

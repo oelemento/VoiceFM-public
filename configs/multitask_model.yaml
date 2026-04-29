@@ -1,0 +1,20 @@
+backbone:
+  name: facebook/hubert-base-ls960
+  freeze_layers: 8  # freeze CNN + layers 0-8, fine-tune 9-11
+  gradient_checkpointing: false
+
+spec_augment: false
+
+task_conditioning:
+  num_task_types: 80  # auto-set from data in training script
+
+tasks:
+  - {name: is_control, type: binary, input_key: is_control_participant, weight: 1.0}
+  - {name: cat_neuro, type: binary, input_key: cat_neuro, weight: 1.0}
+  - {name: cat_voice, type: binary, input_key: cat_voice, weight: 1.0}
+  - {name: cat_mood, type: binary, input_key: cat_mood, weight: 1.0}
+  - {name: cat_respiratory, type: binary, input_key: cat_respiratory, weight: 1.0}
+  - {name: age, type: regression, input_key: age, weight: 0.5}
+  - {name: phq9, type: regression, input_key: phq9_total, weight: 0.3}
+  - {name: gad7, type: regression, input_key: gad7_total, weight: 0.3}
+  - {name: vhi10, type: regression, input_key: vhi10_total, weight: 0.3}

@@ -1,0 +1,23 @@
+# Experiment K: Memory queue + temperature scheduling
+# Builds on Exp D (hard negatives) with:
+# 1. MoCo-style memory queue (512) for more contrastive negatives
+# 2. Temperature scheduling: warm start (0.1) -> cosine anneal -> cold end (0.05)
+model:
+  contrastive:
+    temperature_init: 0.1
+
+training:
+  queue_size: 512
+  use_momentum_encoder: true
+  momentum_decay: 0.999
+  gradient_checkpointing: true
+
+loss:
+  hard_negative_mining: true
+  hard_negative_beta: 1.0
+
+temperature_schedule:
+  enabled: true
+  temp_start: 0.1
+  temp_end: 0.05
+  warmup_epochs: 20

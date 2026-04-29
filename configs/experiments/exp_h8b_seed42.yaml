@@ -1,0 +1,22 @@
+# H8b: Feature selection (remove rare/redundant) — seed 42
+loss:
+  hard_negative_mining: true
+  hard_negative_beta: 1.0
+data:
+  use_gsd: true
+  exclude_features:
+    - gsd_laryng_cancer       # 0 cases
+    - gsd_huntingtons          # 1 case
+    - gsd_als                  # 2 cases
+    - gsd_precancerous_lesion  # 3 cases
+    - gsd_laryngitis           # 7 cases
+    - gsd_glottic_insufficiency # 9 cases
+    - gsd_bipolar              # 9 cases
+    - race_pacific_islander    # 4 cases
+    - smoking_missing          # redundant (inverse of smoking_ever)
+  splits:
+    train: 0.70
+    val: 0.15
+    test: 0.15
+    seed: 42
+    stratify_by: disease_category

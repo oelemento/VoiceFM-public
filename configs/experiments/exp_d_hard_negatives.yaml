@@ -1,0 +1,6 @@
+# Experiment D: Hard negative mining
+# Upweights harder negatives (those with higher similarity) in the InfoNCE loss
+# Focuses learning on the most informative contrastive comparisons
+loss:
+  hard_negative_mining: true
+  hard_negative_beta: 1.0

@@ -1,0 +1,18 @@
+# Experiment 6a: Wider projection (512d) + stronger site-adversarial DANN
+# Rationale: explores whether a wider 512-dim projection retains more
+# useful structure than the 256-dim default, and whether a stronger
+# site-adversarial DANN (site_weight = 0.3) further reduces site shortcut.
+# Inherits hard negative mining from the contrastive baseline.
+model:
+  site_adversarial: true
+  num_sites: 6
+  audio_encoder:
+    projection_dim: 512
+  clinical_encoder:
+    projection_dim: 512
+
+loss:
+  hard_negative_mining: true
+  hard_negative_beta: 1.0
+  site_adversarial: true
+  site_weight: 0.3

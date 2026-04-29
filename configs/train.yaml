@@ -1,0 +1,49 @@
+defaults:
+  - model
+  - data
+
+training:
+  batch_size: 32  # participants per micro-batch (was 8, increased after Exp A)
+  gradient_accumulation_steps: 2  # effective batch = 32 * 2 = 64
+  epochs: 200
+  early_stopping_patience: 25
+  recordings_per_participant: 1
+  category_stratify: true  # interleave participant disease strata in batches
+  task_stratify: true  # diversify task types when sampling >1 recording/participant
+  queue_size: 0  # disabled — no benefit at this scale (Runs 4-6, 10)
+  use_momentum_encoder: false
+  momentum_decay: 0.999
+  gradient_checkpointing: false  # enable for batch_size=64 to fit A40
+
+augmentation:
+  spec_augment: false  # SpecAugment on HuBERT frame features
+
+loss:
+  hard_negative_mining: false
+  hard_negative_beta: 1.0
+
+optimizer:
+  name: adamw
+  lr_projection: 1.0e-4
+  lr_backbone: 1.0e-5
+  weight_decay: 0.01
+  betas: [0.9, 0.999]
+
+scheduler:
+  name: cosine
+  warmup_ratio: 0.1
+
+logging:
+  wandb_project: null  # set to 'voicefm' after running `wandb login`
+  log_every_n_steps: 10
+  eval_every_n_epochs: 5
+
+checkpoint:
+  save_dir: checkpoints
+  save_top_k: 3
+  monitor: val_loss
+
+compute:
+  num_workers: 4
+  pin_memory: true
+  mixed_precision: true  # fp16

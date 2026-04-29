@@ -1,0 +1,22 @@
+# Experiment M: SigLIP contrastive loss
+# Replaces softmax InfoNCE with sigmoid pairwise loss (Zhai et al. 2023).
+# Each audio-clinical pair is scored independently — no competition between
+# negatives in a softmax denominator. This lets subtle clinical signals
+# (mood, respiratory) survive that would otherwise be drowned out by
+# easy negatives.
+#
+# Projection head is already 2-layer MLP (768→512→GELU→256) in base config.
+# Hard negative mining is disabled since SigLIP naturally handles hard
+# negatives via independent per-pair gradients.
+#
+# SigLIP backward pass on the (B,B) pairwise matrix uses more memory than
+# InfoNCE cross_entropy, so we halve batch_size and double grad_accum
+# to keep effective batch = 64.
+training:
+  batch_size: 16
+  gradient_accumulation_steps: 4
+  gradient_checkpointing: true
+
+loss:
+  contrastive_loss_type: siglip
+  hard_negative_mining: false

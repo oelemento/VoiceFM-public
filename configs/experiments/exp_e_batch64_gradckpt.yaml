@@ -1,0 +1,8 @@
+# Experiment E: Even larger batch (64) with gradient checkpointing
+# Doubles in-batch negatives from 32 to 64
+# Gradient checkpointing trades ~30% compute for ~40% memory savings
+# batch_size=64 previously OOMed without checkpointing on A40 (44GB)
+training:
+  batch_size: 64
+  gradient_accumulation_steps: 1  # effective batch stays at 64
+  gradient_checkpointing: true

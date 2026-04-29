@@ -1,0 +1,678 @@
+{
+  "Coswara": {
+    "k=1": {
+      "frozen_whisper": {
+        "mean_auroc": 0.5092708046800535,
+        "std_auroc": 0.0731899193734067,
+        "n_trials": 100,
+        "k": 1
+      },
+      "voicefm_whisper_seeds": [
+        {
+          "mean_auroc": 0.5057852757858196,
+          "std_auroc": 0.052243194588709255,
+          "n_trials": 100,
+          "k": 1
+        },
+        {
+          "mean_auroc": 0.5117004695406305,
+          "std_auroc": 0.07192599906878684,
+          "n_trials": 100,
+          "k": 1
+        },
+        {
+          "mean_auroc": 0.5132547140642558,
+          "std_auroc": 0.05226296615024781,
+          "n_trials": 100,
+          "k": 1
+        },
+        {
+          "mean_auroc": 0.5022675432704508,
+          "std_auroc": 0.06656864063267945,
+          "n_trials": 100,
+          "k": 1
+        },
+        {
+          "mean_auroc": 0.5102746183649666,
+          "std_auroc": 0.06255908033772378,
+          "n_trials": 100,
+          "k": 1
+        }
+      ],
+      "voicefm_whisper": {
+        "mean_auroc": 0.5086565242052247,
+        "std_auroc": 0.004051921192848346,
+        "n_seeds": 5
+      }
+    },
+    "k=2": {
+      "frozen_whisper": {
+        "mean_auroc": 0.5477407390785881,
+        "std_auroc": 0.09081885889576183,
+        "n_trials": 100,
+        "k": 2
+      },
+      "voicefm_whisper_seeds": [
+        {
+          "mean_auroc": 0.5100913109541089,
+          "std_auroc": 0.054608046239767026,
+          "n_trials": 100,
+          "k": 2
+        },
+        {
+          "mean_auroc": 0.5287456564387285,
+          "std_auroc": 0.06783885999347276,
+          "n_trials": 100,
+          "k": 2
+        },
+        {
+          "mean_auroc": 0.5271998722041998,
+          "std_auroc": 0.053017059295364384,
+          "n_trials": 100,
+          "k": 2
+        },
+        {
+          "mean_auroc": 0.5254250706296187,
+          "std_auroc": 0.0716587537090459,
+          "n_trials": 100,
+          "k": 2
+        },
+        {
+          "mean_auroc": 0.5300164499694402,
+          "std_auroc": 0.06807137277308506,
+          "n_trials": 100,
+          "k": 2
+        }
+      ],
+      "voicefm_whisper": {
+        "mean_auroc": 0.5242956720392192,
+        "std_auroc": 0.007266408396081885,
+        "n_seeds": 5
+      }
+    },
+    "k=5": {
+      "frozen_whisper": {
+        "mean_auroc": 0.5764137489646864,
+        "std_auroc": 0.07465053118764914,
+        "n_trials": 100,
+        "k": 5
+      },
+      "voicefm_whisper_seeds": [
+        {
+          "mean_auroc": 0.5412779749803694,
+          "std_auroc": 0.05651504545335106,
+          "n_trials": 100,
+          "k": 5
+        },
+        {
+          "mean_auroc": 0.5460813622037928,
+          "std_auroc": 0.060280192109898316,
+          "n_trials": 100,
+          "k": 5
+        },
+        {
+          "mean_auroc": 0.5551469284799982,
+          "std_auroc": 0.051763670500965496,
+          "n_trials": 100,
+          "k": 5
+        },
+        {
+          "mean_auroc": 0.5565319414415868,
+          "std_auroc": 0.058866511931636493,
+          "n_trials": 100,
+          "k": 5
+        },
+        {
+          "mean_auroc": 0.5633075123430895,
+          "std_auroc": 0.06710382244712568,
+          "n_trials": 100,
+          "k": 5
+        }
+      ],
+      "voicefm_whisper": {
+        "mean_auroc": 0.5524691438897674,
+        "std_auroc": 0.007838279165927475,
+        "n_seeds": 5
+      }
+    },
+    "k=10": {
+      "frozen_whisper": {
+        "mean_auroc": 0.5978569579499227,
+        "std_auroc": 0.05750448723273769,
+        "n_trials": 100,
+        "k": 10
+      },
+      "voicefm_whisper_seeds": [
+        {
+          "mean_auroc": 0.5777193380321521,
+          "std_auroc": 0.04850734893842202,
+          "n_trials": 100,
+          "k": 10
+        },
+        {
+          "mean_auroc": 0.579980013704888,
+          "std_auroc": 0.04830240665908559,
+          "n_trials": 100,
+          "k": 10
+        },
+        {
+          "mean_auroc": 0.575091654158237,
+          "std_auroc": 0.04600444315146391,
+          "n_trials": 100,
+          "k": 10
+        },
+        {
+          "mean_auroc": 0.5776304574822163,
+          "std_auroc": 0.05270867905661041,
+          "n_trials": 100,
+          "k": 10
+        },
+        {
+          "mean_auroc": 0.5874326937718898,
+          "std_auroc": 0.05666064174741128,
+          "n_trials": 100,
+          "k": 10
+        }
+      ],
+      "voicefm_whisper": {
+        "mean_auroc": 0.5795708314298766,
+        "std_auroc": 0.0042245098534219785,
+        "n_seeds": 5
+      }
+    },
+    "k=20": {
+      "frozen_whisper": {
+        "mean_auroc": 0.6277833806107126,
+        "std_auroc": 0.03976053260601441,
+        "n_trials": 100,
+        "k": 20
+      },
+      "voicefm_whisper_seeds": [
+        {
+          "mean_auroc": 0.6215736470326492,
+          "std_auroc": 0.037353015273034806,
+          "n_trials": 100,
+          "k": 20
+        },
+        {
+          "mean_auroc": 0.6247124256076534,
+          "std_auroc": 0.03890843725551815,
+          "n_trials": 100,
+          "k": 20
+        },
+        {
+          "mean_auroc": 0.6098241225874631,
+          "std_auroc": 0.03899844784364785,
+          "n_trials": 100,
+          "k": 20
+        },
+        {
+          "mean_auroc": 0.6121110740308138,
+          "std_auroc": 0.04273738434267748,
+          "n_trials": 100,
+          "k": 20
+        },
+        {
+          "mean_auroc": 0.6189811279826464,
+          "std_auroc": 0.04188346264087714,
+          "n_trials": 100,
+          "k": 20
+        }
+      ],
+      "voicefm_whisper": {
+        "mean_auroc": 0.6174404794482452,
+        "std_auroc": 0.0056347018921462325,
+        "n_seeds": 5
+      }
+    }
+  },
+  "SVD": {
+    "k=1": {
+      "frozen_whisper": {
+        "mean_auroc": 0.4999672857934537,
+        "std_auroc": 0.08693170402704027,
+        "n_trials": 100,
+        "k": 1
+      },
+      "voicefm_whisper_seeds": [
+        {
+          "mean_auroc": 0.522472172068384,
+          "std_auroc": 0.0959779161058441,
+          "n_trials": 100,
+          "k": 1
+        },
+        {
+          "mean_auroc": 0.4985838964467248,
+          "std_auroc": 0.11996869567703125,
+          "n_trials": 100,
+          "k": 1
+        },
+        {
+          "mean_auroc": 0.5141362764201481,
+          "std_auroc": 0.10995801461897277,
+          "n_trials": 100,
+          "k": 1
+        },
+        {
+          "mean_auroc": 0.5168470119237026,
+          "std_auroc": 0.07209397632214112,
+          "n_trials": 100,
+          "k": 1
+        },
+        {
+          "mean_auroc": 0.5015521222522152,
+          "std_auroc": 0.09759279476887955,
+          "n_trials": 100,
+          "k": 1
+        }
+      ],
+      "voicefm_whisper": {
+        "mean_auroc": 0.510718295822235,
+        "std_auroc": 0.009150516328054904,
+        "n_seeds": 5
+      }
+    },
+    "k=2": {
+      "frozen_whisper": {
+        "mean_auroc": 0.5400333038129133,
+        "std_auroc": 0.10195466793784853,
+        "n_trials": 100,
+        "k": 2
+      },
+      "voicefm_whisper_seeds": [
+        {
+          "mean_auroc": 0.5228096022509195,
+          "std_auroc": 0.09137064032474693,
+          "n_trials": 100,
+          "k": 2
+        },
+        {
+          "mean_auroc": 0.561854746092029,
+          "std_auroc": 0.1131417919714754,
+          "n_trials": 100,
+          "k": 2
+        },
+        {
+          "mean_auroc": 0.5653305739456654,
+          "std_auroc": 0.10822968845061323,
+          "n_trials": 100,
+          "k": 2
+        },
+        {
+          "mean_auroc": 0.5398043961033046,
+          "std_auroc": 0.07138481067092017,
+          "n_trials": 100,
+          "k": 2
+        },
+        {
+          "mean_auroc": 0.5452497860640717,
+          "std_auroc": 0.09474017870618322,
+          "n_trials": 100,
+          "k": 2
+        }
+      ],
+      "voicefm_whisper": {
+        "mean_auroc": 0.547009820891198,
+        "std_auroc": 0.015470541347380273,
+        "n_seeds": 5
+      }
+    },
+    "k=5": {
+      "frozen_whisper": {
+        "mean_auroc": 0.5954715459387885,
+        "std_auroc": 0.07945029325841092,
+        "n_trials": 100,
+        "k": 5
+      },
+      "voicefm_whisper_seeds": [
+        {
+          "mean_auroc": 0.5861659995786812,
+          "std_auroc": 0.07932337955736496,
+          "n_trials": 100,
+          "k": 5
+        },
+        {
+          "mean_auroc": 0.6081032983237533,
+          "std_auroc": 0.0932085614811829,
+          "n_trials": 100,
+          "k": 5
+        },
+        {
+          "mean_auroc": 0.5911740723464443,
+          "std_auroc": 0.0812182692351861,
+          "n_trials": 100,
+          "k": 5
+        },
+        {
+          "mean_auroc": 0.5790287700502573,
+          "std_auroc": 0.0711964329889616,
+          "n_trials": 100,
+          "k": 5
+        },
+        {
+          "mean_auroc": 0.5635851816184657,
+          "std_auroc": 0.07755985068852501,
+          "n_trials": 100,
+          "k": 5
+        }
+      ],
+      "voicefm_whisper": {
+        "mean_auroc": 0.5856114643835204,
+        "std_auroc": 0.014598778769186058,
+        "n_seeds": 5
+      }
+    },
+    "k=10": {
+      "frozen_whisper": {
+        "mean_auroc": 0.6229154990743069,
+        "std_auroc": 0.05819327967569949,
+        "n_trials": 100,
+        "k": 10
+      },
+      "voicefm_whisper_seeds": [
+        {
+          "mean_auroc": 0.6246919613265983,
+          "std_auroc": 0.05454580642188986,
+          "n_trials": 100,
+          "k": 10
+        },
+        {
+          "mean_auroc": 0.6453026445109827,
+          "std_auroc": 0.05238828332921916,
+          "n_trials": 100,
+          "k": 10
+        },
+        {
+          "mean_auroc": 0.6230567529885032,
+          "std_auroc": 0.0654587925879518,
+          "n_trials": 100,
+          "k": 10
+        },
+        {
+          "mean_auroc": 0.6198760637852088,
+          "std_auroc": 0.054222167009492846,
+          "n_trials": 100,
+          "k": 10
+        },
+        {
+          "mean_auroc": 0.6070415304793034,
+          "std_auroc": 0.05191030773805864,
+          "n_trials": 100,
+          "k": 10
+        }
+      ],
+      "voicefm_whisper": {
+        "mean_auroc": 0.6239937906181192,
+        "std_auroc": 0.012326942314860185,
+        "n_seeds": 5
+      }
+    },
+    "k=20": {
+      "frozen_whisper": {
+        "mean_auroc": 0.6478221902670428,
+        "std_auroc": 0.044334368148400256,
+        "n_trials": 100,
+        "k": 20
+      },
+      "voicefm_whisper_seeds": [
+        {
+          "mean_auroc": 0.6666991254874685,
+          "std_auroc": 0.037452040818805904,
+          "n_trials": 100,
+          "k": 20
+        },
+        {
+          "mean_auroc": 0.6778792563126674,
+          "std_auroc": 0.03991919390544825,
+          "n_trials": 100,
+          "k": 20
+        },
+        {
+          "mean_auroc": 0.6611763483045086,
+          "std_auroc": 0.05246813391142301,
+          "n_trials": 100,
+          "k": 20
+        },
+        {
+          "mean_auroc": 0.6483787053463272,
+          "std_auroc": 0.04151899048675172,
+          "n_trials": 100,
+          "k": 20
+        },
+        {
+          "mean_auroc": 0.6417398813663965,
+          "std_auroc": 0.04506470997369614,
+          "n_trials": 100,
+          "k": 20
+        }
+      ],
+      "voicefm_whisper": {
+        "mean_auroc": 0.6591746633634736,
+        "std_auroc": 0.012891938590043174,
+        "n_seeds": 5
+      }
+    }
+  },
+  "MDVR-KCL": {
+    "k=1": {
+      "frozen_whisper": {
+        "mean_auroc": 0.5089833333333335,
+        "std_auroc": 0.1119922852005639,
+        "n_trials": 100,
+        "k": 1
+      },
+      "voicefm_whisper_seeds": [
+        {
+          "mean_auroc": 0.6675500000000001,
+          "std_auroc": 0.220575441238996,
+          "n_trials": 100,
+          "k": 1
+        },
+        {
+          "mean_auroc": 0.7022833333333334,
+          "std_auroc": 0.22717720139427136,
+          "n_trials": 100,
+          "k": 1
+        },
+        {
+          "mean_auroc": 0.6901833333333331,
+          "std_auroc": 0.22477580126279903,
+          "n_trials": 100,
+          "k": 1
+        },
+        {
+          "mean_auroc": 0.6809333333333335,
+          "std_auroc": 0.21768023439082487,
+          "n_trials": 100,
+          "k": 1
+        },
+        {
+          "mean_auroc": 0.6792999999999998,
+          "std_auroc": 0.229590962365682,
+          "n_trials": 100,
+          "k": 1
+        }
+      ],
+      "voicefm_whisper": {
+        "mean_auroc": 0.68405,
+        "std_auroc": 0.011615492527941555,
+        "n_seeds": 5
+      }
+    },
+    "k=2": {
+      "frozen_whisper": {
+        "mean_auroc": 0.6331578947368421,
+        "std_auroc": 0.10261736661075488,
+        "n_trials": 100,
+        "k": 2
+      },
+      "voicefm_whisper_seeds": [
+        {
+          "mean_auroc": 0.8268796992481205,
+          "std_auroc": 0.13994597598446698,
+          "n_trials": 100,
+          "k": 2
+        },
+        {
+          "mean_auroc": 0.8250375939849625,
+          "std_auroc": 0.15443069080032698,
+          "n_trials": 100,
+          "k": 2
+        },
+        {
+          "mean_auroc": 0.8121804511278198,
+          "std_auroc": 0.14672823969594034,
+          "n_trials": 100,
+          "k": 2
+        },
+        {
+          "mean_auroc": 0.8285714285714286,
+          "std_auroc": 0.13119277379999758,
+          "n_trials": 100,
+          "k": 2
+        },
+        {
+          "mean_auroc": 0.815902255639098,
+          "std_auroc": 0.14047323870811937,
+          "n_trials": 100,
+          "k": 2
+        }
+      ],
+      "voicefm_whisper": {
+        "mean_auroc": 0.8217142857142858,
+        "std_auroc": 0.006471784584142444,
+        "n_seeds": 5
+      }
+    },
+    "k=5": {
+      "frozen_whisper": {
+        "mean_auroc": 0.6945454545454544,
+        "std_auroc": 0.08473006481938698,
+        "n_trials": 100,
+        "k": 5
+      },
+      "voicefm_whisper_seeds": [
+        {
+          "mean_auroc": 0.8639772727272726,
+          "std_auroc": 0.04840442252351236,
+          "n_trials": 100,
+          "k": 5
+        },
+        {
+          "mean_auroc": 0.8844886363636363,
+          "std_auroc": 0.06998586320503392,
+          "n_trials": 100,
+          "k": 5
+        },
+        {
+          "mean_auroc": 0.8519886363636365,
+          "std_auroc": 0.07344890121626077,
+          "n_trials": 100,
+          "k": 5
+        },
+        {
+          "mean_auroc": 0.8547159090909092,
+          "std_auroc": 0.07005133429838059,
+          "n_trials": 100,
+          "k": 5
+        },
+        {
+          "mean_auroc": 0.8297159090909091,
+          "std_auroc": 0.075640579639656,
+          "n_trials": 100,
+          "k": 5
+        }
+      ],
+      "voicefm_whisper": {
+        "mean_auroc": 0.8569772727272728,
+        "std_auroc": 0.017771085136877467,
+        "n_seeds": 5
+      }
+    },
+    "k=10": {
+      "frozen_whisper": {
+        "mean_auroc": 0.7695454545454545,
+        "std_auroc": 0.10048767678879611,
+        "n_trials": 100,
+        "k": 10
+      },
+      "voicefm_whisper_seeds": [
+        {
+          "mean_auroc": 0.8906060606060603,
+          "std_auroc": 0.08330798512552642,
+          "n_trials": 100,
+          "k": 10
+        },
+        {
+          "mean_auroc": 0.9221212121212119,
+          "std_auroc": 0.05844715381262858,
+          "n_trials": 100,
+          "k": 10
+        },
+        {
+          "mean_auroc": 0.8962121212121212,
+          "std_auroc": 0.07327367345304826,
+          "n_trials": 100,
+          "k": 10
+        },
+        {
+          "mean_auroc": 0.8706060606060605,
+          "std_auroc": 0.07607267802304449,
+          "n_trials": 100,
+          "k": 10
+        },
+        {
+          "mean_auroc": 0.8315151515151514,
+          "std_auroc": 0.08741465731814996,
+          "n_trials": 100,
+          "k": 10
+        }
+      ],
+      "voicefm_whisper": {
+        "mean_auroc": 0.882212121212121,
+        "std_auroc": 0.030212835467682324,
+        "n_seeds": 5
+      }
+    },
+    "k=20": {
+      "frozen_whisper": {
+        "mean_auroc": null,
+        "std_auroc": 0,
+        "n_trials": 0,
+        "k": 20
+      },
+      "voicefm_whisper_seeds": [
+        {
+          "mean_auroc": null,
+          "std_auroc": 0,
+          "n_trials": 0,
+          "k": 20
+        },
+        {
+          "mean_auroc": null,
+          "std_auroc": 0,
+          "n_trials": 0,
+          "k": 20
+        },
+        {
+          "mean_auroc": null,
+          "std_auroc": 0,
+          "n_trials": 0,
+          "k": 20
+        },
+        {
+          "mean_auroc": null,
+          "std_auroc": 0,
+          "n_trials": 0,
+          "k": 20
+        },
+        {
+          "mean_auroc": null,
+          "std_auroc": 0,
+          "n_trials": 0,
+          "k": 20
+        }
+      ]
+    }
+  }
+}

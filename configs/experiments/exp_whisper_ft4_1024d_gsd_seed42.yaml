@@ -1,0 +1,23 @@
+# H28b: Whisper large-v2, fine-tune top 4 layers, 1024d projection — seed 42
+model:
+  audio_encoder:
+    type: whisper
+    backbone: openai/whisper-large-v2
+    freeze_backbone: true
+    unfreeze_last_n: 4
+    projection_dim: 1024
+  clinical_encoder:
+    projection_dim: 1024
+loss:
+  hard_negative_mining: true
+  hard_negative_beta: 1.0
+batch_size: 8
+gradient_accumulation_steps: 8
+data:
+  use_gsd: true
+  splits:
+    train: 0.70
+    val: 0.15
+    test: 0.15
+    seed: 42
+    stratify_by: disease_category

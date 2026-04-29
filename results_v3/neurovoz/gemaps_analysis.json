@@ -1,0 +1,307 @@
+{
+  "n_participants": 107,
+  "n_pd": 52,
+  "n_hc": 55,
+  "n_recordings": 2829,
+  "n_gemaps_features": 88,
+  "overall_auroc": 0.883916083916084,
+  "cv_strategy": "5-fold StratifiedKFold, scaler fit inside fold (sklearn Pipeline)",
+  "incremental": [
+    {
+      "group": "F0",
+      "n_features": 10,
+      "r2": 0.4784193895125043,
+      "auroc": 0.8073426573426573
+    },
+    {
+      "group": "Jitter/Shimmer",
+      "n_features": 14,
+      "r2": 0.5598972347897984,
+      "auroc": 0.8164335664335665
+    },
+    {
+      "group": "HNR",
+      "n_features": 16,
+      "r2": 0.5622544244661508,
+      "auroc": 0.8174825174825175
+    },
+    {
+      "group": "Loudness",
+      "n_features": 27,
+      "r2": 0.7074572245842954,
+      "auroc": 0.8423076923076923
+    },
+    {
+      "group": "Formants",
+      "n_features": 39,
+      "r2": 0.7616703929969207,
+      "auroc": 0.8566433566433566
+    },
+    {
+      "group": "Bandwidth",
+      "n_features": 45,
+      "r2": 0.7616703930854067,
+      "auroc": 0.8552447552447553
+    },
+    {
+      "group": "Spectral",
+      "n_features": 62,
+      "r2": 0.8806003649025168,
+      "auroc": 0.8367132867132867
+    },
+    {
+      "group": "MFCC",
+      "n_features": 78,
+      "r2": 0.9065789398441927,
+      "auroc": 0.7972027972027972
+    },
+    {
+      "group": "Voicing",
+      "n_features": 83,
+      "r2": 0.9120072233936893,
+      "auroc": 0.836013986013986
+    },
+    {
+      "group": "Other",
+      "n_features": 94,
+      "r2": 0.9562428680165678,
+      "auroc": 0.8814685314685315
+    }
+  ],
+  "group_diffs_top20": [
+    {
+      "feature": "F1amplitudeLogRelF0_sma3nz_amean",
+      "cohens_d": 2.056124266176993,
+      "p_value": 2.3588959027389623e-18,
+      "significant": true
+    },
+    {
+      "feature": "F2amplitudeLogRelF0_sma3nz_amean",
+      "cohens_d": 1.9377579033221743,
+      "p_value": 5.577773007022146e-17,
+      "significant": true
+    },
+    {
+      "feature": "F3amplitudeLogRelF0_sma3nz_amean",
+      "cohens_d": 1.8682227070412039,
+      "p_value": 3.577851607682367e-16,
+      "significant": true
+    },
+    {
+      "feature": "mfcc1V_sma3nz_stddevNorm",
+      "cohens_d": -1.5546211617337453,
+      "p_value": 1.4492511170979345e-12,
+      "significant": true
+    },
+    {
+      "feature": "mfcc1_sma3_amean",
+      "cohens_d": 1.359726532093326,
+      "p_value": 2.1640680427172818e-10,
+      "significant": true
+    },
+    {
+      "feature": "slopeUV0-500_sma3nz_amean",
+      "cohens_d": 1.3434133311652656,
+      "p_value": 3.26105908814421e-10,
+      "significant": true
+    },
+    {
+      "feature": "StddevUnvoicedSegmentLength",
+      "cohens_d": -1.3392119801540718,
+      "p_value": 3.623335210655097e-10,
+      "significant": true
+    },
+    {
+      "feature": "spectralFlux_sma3_stddevNorm",
+      "cohens_d": -1.3032812942490004,
+      "p_value": 8.878804473587534e-10,
+      "significant": true
+    },
+    {
+      "feature": "MeanUnvoicedSegmentLength",
+      "cohens_d": -1.1861421068503049,
+      "p_value": 1.546286107639368e-08,
+      "significant": true
+    },
+    {
+      "feature": "VoicedSegmentsPerSec",
+      "cohens_d": -1.038928217178489,
+      "p_value": 4.7285419209535655e-07,
+      "significant": true
+    },
+    {
+      "feature": "loudness_sma3_stddevNorm",
+      "cohens_d": -0.9976988395402185,
+      "p_value": 1.183392019258601e-06,
+      "significant": true
+    },
+    {
+      "feature": "slopeUV500-1500_sma3nz_amean",
+      "cohens_d": -0.8927599519775642,
+      "p_value": 1.1137438050582146e-05,
+      "significant": true
+    },
+    {
+      "feature": "F0semitoneFrom27.5Hz_sma3nz_stddevFallingSlope",
+      "cohens_d": -0.8614726951560305,
+      "p_value": 2.1130167868138687e-05,
+      "significant": true
+    },
+    {
+      "feature": "mfcc1V_sma3nz_amean",
+      "cohens_d": 0.8308695248162822,
+      "p_value": 3.9005733029135984e-05,
+      "significant": true
+    },
+    {
+      "feature": "F0semitoneFrom27.5Hz_sma3nz_meanFallingSlope",
+      "cohens_d": -0.8305201164937753,
+      "p_value": 3.9276611461247623e-05,
+      "significant": true
+    },
+    {
+      "feature": "slopeV0-500_sma3nz_amean",
+      "cohens_d": 0.7436150110864461,
+      "p_value": 0.00020735044169562934,
+      "significant": true
+    },
+    {
+      "feature": "F1frequency_sma3nz_stddevNorm",
+      "cohens_d": -0.6166177875734715,
+      "p_value": 0.001888503989550371,
+      "significant": true
+    },
+    {
+      "feature": "F0semitoneFrom27.5Hz_sma3nz_stddevNorm",
+      "cohens_d": -0.5954484931306454,
+      "p_value": 0.0026549310863644058,
+      "significant": true
+    },
+    {
+      "feature": "slopeV500-1500_sma3nz_amean",
+      "cohens_d": -0.565273799737146,
+      "p_value": 0.004253090745487366,
+      "significant": true
+    },
+    {
+      "feature": "F1bandwidth_sma3nz_stddevNorm",
+      "cohens_d": -0.5549069157801627,
+      "p_value": 0.0049808517143294226,
+      "significant": true
+    }
+  ],
+  "correlations_top20": [
+    {
+      "feature": "F1amplitudeLogRelF0_sma3nz_amean",
+      "rho": 0.7472521013342739,
+      "p": 2.390310693379722e-20
+    },
+    {
+      "feature": "F2amplitudeLogRelF0_sma3nz_amean",
+      "rho": 0.7416289504104704,
+      "p": 6.454118346537666e-20
+    },
+    {
+      "feature": "F3amplitudeLogRelF0_sma3nz_amean",
+      "rho": 0.7119947491134231,
+      "p": 8.153983333138666e-18
+    },
+    {
+      "feature": "mfcc1V_sma3nz_stddevNorm",
+      "rho": -0.6969866180763731,
+      "p": 7.546609877318387e-17
+    },
+    {
+      "feature": "StddevUnvoicedSegmentLength",
+      "rho": -0.6785203471854856,
+      "p": 9.734593395083544e-16
+    },
+    {
+      "feature": "slopeUV0-500_sma3nz_amean",
+      "rho": 0.6629734124884893,
+      "p": 7.288358728434848e-15
+    },
+    {
+      "feature": "spectralFlux_sma3_stddevNorm",
+      "rho": -0.6471325848860675,
+      "p": 5.031639393893672e-14
+    },
+    {
+      "feature": "mfcc1_sma3_amean",
+      "rho": 0.6236309488822274,
+      "p": 7.236608235665824e-13
+    },
+    {
+      "feature": "MeanUnvoicedSegmentLength",
+      "rho": -0.5680166147455868,
+      "p": 1.7608963326938346e-10
+    },
+    {
+      "feature": "loudness_sma3_stddevNorm",
+      "rho": -0.5631086032249847,
+      "p": 2.725277472994601e-10
+    },
+    {
+      "feature": "mfcc1_sma3_stddevNorm",
+      "rho": -0.5493054331001783,
+      "p": 8.965480964716691e-10
+    },
+    {
+      "feature": "VoicedSegmentsPerSec",
+      "rho": -0.4686612198514861,
+      "p": 3.5599258246105925e-07
+    },
+    {
+      "feature": "slopeUV500-1500_sma3nz_amean",
+      "rho": -0.4578361645016556,
+      "p": 7.112091210100822e-07
+    },
+    {
+      "feature": "F0semitoneFrom27.5Hz_sma3nz_meanFallingSlope",
+      "rho": -0.4576990144791238,
+      "p": 7.17363674092745e-07
+    },
+    {
+      "feature": "slopeV0-500_sma3nz_amean",
+      "rho": 0.45360410666353185,
+      "p": 9.262311388852876e-07
+    },
+    {
+      "feature": "slopeV500-1500_sma3nz_stddevNorm",
+      "rho": 0.4224808479789965,
+      "p": 5.816300397754443e-06
+    },
+    {
+      "feature": "mfcc1V_sma3nz_amean",
+      "rho": 0.4198162189698074,
+      "p": 6.750870695254972e-06
+    },
+    {
+      "feature": "F0semitoneFrom27.5Hz_sma3nz_stddevFallingSlope",
+      "rho": -0.4186994259291914,
+      "p": 7.183216829191796e-06
+    },
+    {
+      "feature": "F0semitoneFrom27.5Hz_sma3nz_stddevNorm",
+      "rho": -0.41866024020846804,
+      "p": 7.198850735929921e-06
+    },
+    {
+      "feature": "F1frequency_sma3nz_stddevNorm",
+      "rho": -0.39709829738043456,
+      "p": 2.286970333394984e-05
+    }
+  ],
+  "feature_groups": {
+    "F0": 10,
+    "Jitter/Shimmer": 4,
+    "Loudness": 11,
+    "HNR": 2,
+    "Formants": 12,
+    "Bandwidth": 6,
+    "Spectral": 17,
+    "MFCC": 16,
+    "Voicing": 5,
+    "Other": 11
+  }
+}

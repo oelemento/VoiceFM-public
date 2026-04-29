@@ -1,0 +1,4 @@
+# Experiment 6c: Multi-dataset multi-task training
+# Trains on B2AI + SVD (cat_voice) + Coswara (cat_respiratory)
+# Goal: Break site-disease correlations by adding cross-environment variation
+# No model architecture changes from baseline multitask

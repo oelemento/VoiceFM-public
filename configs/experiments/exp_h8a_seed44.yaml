@@ -1,0 +1,18 @@
+# H8a: Lower LR + longer training — seed 44
+loss:
+  hard_negative_mining: true
+  hard_negative_beta: 1.0
+data:
+  use_gsd: true
+  splits:
+    train: 0.70
+    val: 0.15
+    test: 0.15
+    seed: 44
+    stratify_by: disease_category
+training:
+  epochs: 400
+  early_stopping_patience: 50
+optimizer:
+  lr_backbone: 5.0e-6
+  lr_projection: 5.0e-5

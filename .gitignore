@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# Environment / secrets
+.env
+.env.*
+*.key
+*.pem
+
+# Data — never commit raw audio or large binaries
+data/raw/
+data/processed/
+data/processed_v3/
+data/external/
+*.wav
+*.mp3
+*.m4a
+*.flac
+
+# Model weights and embeddings — release on Zenodo / HF, not git
+checkpoints*/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.npz
+
+# Logs
+logs/
+*.log
+slurm-*.out
+
+# Generated paper figures (regenerable from results_v3/ via scripts/paper_*_v3.py)
+paper_v3/_panel_cache/
+paper_v3/fig*_*.pdf
+paper_v3/fig*_*.png
+paper_v3/figS*.pdf
+paper_v3/figS*.png
+paper_v3/VoiceFM_figures_v3.pdf
+# Keep static figure inputs (Fig 1a hand-drawn architecture)
+!paper_v3/fig1a_architecture.png

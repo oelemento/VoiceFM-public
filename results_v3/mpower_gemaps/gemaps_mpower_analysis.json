@@ -1,0 +1,295 @@
+{
+  "n_participants": 585,
+  "n_pd": 101,
+  "n_hc": 484,
+  "n_recordings": 15166,
+  "n_gemaps_features": 88,
+  "gemaps_auroc": 0.7082480975370263,
+  "voicefm_auroc": 0.8702438425660748,
+  "incremental": [
+    {
+      "group": "F0",
+      "n_features": 10,
+      "r2": 0.12128984686977629,
+      "auroc": 0.6321086654119956
+    },
+    {
+      "group": "Jitter/Shimmer",
+      "n_features": 14,
+      "r2": 0.1435462679716888,
+      "auroc": 0.6346452827100892
+    },
+    {
+      "group": "HNR",
+      "n_features": 16,
+      "r2": 0.1452617012105364,
+      "auroc": 0.6292038294738564
+    },
+    {
+      "group": "Loudness",
+      "n_features": 27,
+      "r2": 0.2363081911963919,
+      "auroc": 0.7065706570657065
+    },
+    {
+      "group": "Formants",
+      "n_features": 39,
+      "r2": 0.3071878820347095,
+      "auroc": 0.7124826118975535
+    },
+    {
+      "group": "Bandwidth",
+      "n_features": 45,
+      "r2": 0.30718788201944147,
+      "auroc": 0.7118893707552574
+    },
+    {
+      "group": "Spectral",
+      "n_features": 62,
+      "r2": 0.37517805690616746,
+      "auroc": 0.7335119875623926
+    },
+    {
+      "group": "MFCC",
+      "n_features": 78,
+      "r2": 0.41100010715317714,
+      "auroc": 0.7306685213975943
+    },
+    {
+      "group": "Voicing",
+      "n_features": 83,
+      "r2": 0.4404753228513125,
+      "auroc": 0.7336960968824155
+    },
+    {
+      "group": "Other",
+      "n_features": 94,
+      "r2": 0.4779465764711668,
+      "auroc": 0.7073684641191392
+    }
+  ],
+  "group_diffs_top20": [
+    {
+      "feature": "F2bandwidth_sma3nz_stddevNorm",
+      "cohens_d": 0.5697406679316757,
+      "p_value": 2.649071975699849e-07,
+      "significant": true
+    },
+    {
+      "feature": "F2frequency_sma3nz_amean",
+      "cohens_d": 0.5476633104081605,
+      "p_value": 7.359775458949096e-07,
+      "significant": true
+    },
+    {
+      "feature": "F0semitoneFrom27.5Hz_sma3nz_amean",
+      "cohens_d": 0.45683543828181145,
+      "p_value": 3.419867911125522e-05,
+      "significant": true
+    },
+    {
+      "feature": "F3frequency_sma3nz_amean",
+      "cohens_d": 0.4522993974915998,
+      "p_value": 4.07847787671612e-05,
+      "significant": true
+    },
+    {
+      "feature": "F0semitoneFrom27.5Hz_sma3nz_percentile50.0",
+      "cohens_d": 0.4484320474587221,
+      "p_value": 4.733670028856684e-05,
+      "significant": true
+    },
+    {
+      "feature": "F1frequency_sma3nz_amean",
+      "cohens_d": 0.4431282152091522,
+      "p_value": 5.796435790170285e-05,
+      "significant": true
+    },
+    {
+      "feature": "F0semitoneFrom27.5Hz_sma3nz_percentile20.0",
+      "cohens_d": 0.43672431322911004,
+      "p_value": 7.382137475571089e-05,
+      "significant": true
+    },
+    {
+      "feature": "F0semitoneFrom27.5Hz_sma3nz_percentile80.0",
+      "cohens_d": 0.4273578143576254,
+      "p_value": 0.00010457976506259471,
+      "significant": true
+    },
+    {
+      "feature": "F3bandwidth_sma3nz_stddevNorm",
+      "cohens_d": 0.34712123507408627,
+      "p_value": 0.0015874955005791436,
+      "significant": true
+    },
+    {
+      "feature": "mfcc1_sma3_amean",
+      "cohens_d": -0.3370728002394181,
+      "p_value": 0.0021584550948502076,
+      "significant": true
+    },
+    {
+      "feature": "F1bandwidth_sma3nz_stddevNorm",
+      "cohens_d": 0.33544865567230525,
+      "p_value": 0.002266762192276951,
+      "significant": true
+    },
+    {
+      "feature": "slopeV0-500_sma3nz_amean",
+      "cohens_d": 0.3151767705980985,
+      "p_value": 0.004108584770589675,
+      "significant": true
+    },
+    {
+      "feature": "HNRdBACF_sma3nz_amean",
+      "cohens_d": 0.2808783500187883,
+      "p_value": 0.010489303769381793,
+      "significant": true
+    },
+    {
+      "feature": "spectralFluxV_sma3nz_stddevNorm",
+      "cohens_d": -0.27775927772163167,
+      "p_value": 0.011373655907843932,
+      "significant": true
+    },
+    {
+      "feature": "mfcc1V_sma3nz_amean",
+      "cohens_d": -0.2541588389919511,
+      "p_value": 0.020504566091785324,
+      "significant": true
+    },
+    {
+      "feature": "loudness_sma3_stddevRisingSlope",
+      "cohens_d": -0.2447473585569719,
+      "p_value": 0.025644087864438003,
+      "significant": true
+    },
+    {
+      "feature": "loudness_sma3_meanRisingSlope",
+      "cohens_d": -0.23622307766636005,
+      "p_value": 0.031228330679057382,
+      "significant": true
+    },
+    {
+      "feature": "F3bandwidth_sma3nz_amean",
+      "cohens_d": 0.2350754958166266,
+      "p_value": 0.03205474131851292,
+      "significant": true
+    },
+    {
+      "feature": "F0semitoneFrom27.5Hz_sma3nz_stddevFallingSlope",
+      "cohens_d": 0.22492712221806155,
+      "p_value": 0.040216133489603435,
+      "significant": true
+    },
+    {
+      "feature": "F2bandwidth_sma3nz_amean",
+      "cohens_d": 0.22088138729948104,
+      "p_value": 0.04393074330965902,
+      "significant": true
+    }
+  ],
+  "correlations_top20": [
+    {
+      "feature": "F2frequency_sma3nz_amean",
+      "rho": 0.3059558531763871,
+      "p": 3.835679179298517e-14
+    },
+    {
+      "feature": "F0semitoneFrom27.5Hz_sma3nz_percentile80.0",
+      "rho": 0.2975935989143713,
+      "p": 1.9880639933805902e-13
+    },
+    {
+      "feature": "F1frequency_sma3nz_amean",
+      "rho": 0.29559832456414814,
+      "p": 2.921040355278832e-13
+    },
+    {
+      "feature": "F3frequency_sma3nz_amean",
+      "rho": 0.2939375140109163,
+      "p": 4.014603418189595e-13
+    },
+    {
+      "feature": "F0semitoneFrom27.5Hz_sma3nz_amean",
+      "rho": 0.2911115989873719,
+      "p": 6.86393502653839e-13
+    },
+    {
+      "feature": "F0semitoneFrom27.5Hz_sma3nz_percentile50.0",
+      "rho": 0.2794376093151165,
+      "p": 5.91033317347515e-12
+    },
+    {
+      "feature": "F2bandwidth_sma3nz_stddevNorm",
+      "rho": 0.27435076261342106,
+      "p": 1.463898147251268e-11
+    },
+    {
+      "feature": "F0semitoneFrom27.5Hz_sma3nz_percentile20.0",
+      "rho": 0.264620923048152,
+      "p": 7.878078815425193e-11
+    },
+    {
+      "feature": "slopeV0-500_sma3nz_amean",
+      "rho": 0.2611854763591638,
+      "p": 1.404445652558939e-10
+    },
+    {
+      "feature": "F3bandwidth_sma3nz_stddevNorm",
+      "rho": 0.2389085091665858,
+      "p": 4.886182366068546e-09
+    },
+    {
+      "feature": "F1bandwidth_sma3nz_stddevNorm",
+      "rho": 0.20335410845018592,
+      "p": 7.053817333016658e-07
+    },
+    {
+      "feature": "logRelF0-H1-H2_sma3nz_amean",
+      "rho": -0.18492413426024162,
+      "p": 6.730519315727438e-06
+    },
+    {
+      "feature": "mfcc1_sma3_amean",
+      "rho": -0.18199517844662547,
+      "p": 9.444919039457544e-06
+    },
+    {
+      "feature": "mfcc1V_sma3nz_amean",
+      "rho": -0.1716419055565346,
+      "p": 2.9982816992429606e-05
+    },
+    {
+      "feature": "F0semitoneFrom27.5Hz_sma3nz_stddevFallingSlope",
+      "rho": 0.15170215014350524,
+      "p": 0.00023080156268961283
+    },
+    {
+      "feature": "HNRdBACF_sma3nz_amean",
+      "rho": 0.14476995723898337,
+      "p": 0.0004438291233867554
+    },
+    {
+      "feature": "mfcc4V_sma3nz_amean",
+      "rho": -0.14423481516379738,
+      "p": 0.0004662579370412423
+    },
+    {
+      "feature": "mfcc4_sma3_amean",
+      "rho": -0.1437242483855229,
+      "p": 0.0004886358874344513
+    },
+    {
+      "feature": "F0semitoneFrom27.5Hz_sma3nz_meanRisingSlope",
+      "rho": 0.13811119063117755,
+      "p": 0.0008099161465279231
+    },
+    {
+      "feature": "loudness_sma3_stddevRisingSlope",
+      "rho": -0.13454993040995192,
+      "p": 0.001105458584178541
+    }
+  ]
+}

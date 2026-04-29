@@ -1,0 +1,5 @@
+# Experiment D Reproduction: identical to exp_d_hard_negatives
+# Independent run to verify reproducibility of best contrastive results
+loss:
+  hard_negative_mining: true
+  hard_negative_beta: 1.0

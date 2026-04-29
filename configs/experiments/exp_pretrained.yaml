@@ -1,0 +1,13 @@
+# Experiment: VoiceFM with pre-trained HuBERT backbone
+# Uses backbone pre-trained on SVD + Coswara + VOICED external clinical voice data,
+# combined with hard negative mining (best technique from Exp D).
+model:
+  audio_encoder:
+    pretrained_weights: checkpoints_pretrain/backbone_weights.pt
+
+training:
+  gradient_checkpointing: true
+
+loss:
+  hard_negative_mining: true
+  hard_negative_beta: 1.0

@@ -1,0 +1,31 @@
+audio:
+  sample_rate: 16000
+  max_duration_sec: 30
+  trim_silence: true
+  trim_threshold_db: -40
+  normalize: true
+
+clinical:
+  # Path to the REDCap export from Bridge2AI-Voice. Replace with the
+  # filename of the export you obtained from PhysioNet (see data/README.md).
+  redcap_csv: data/metadata/bridge2ai_voice_redcap_export.csv
+  participant_table: data/processed/participants.parquet
+  recording_manifest: data/processed/recordings.parquet
+
+splits:
+  train: 0.70
+  val: 0.15
+  test: 0.15
+  seed: 42
+  stratify_by: disease_category
+
+# Optional S3-compatible bulk download (used by src/utils/download.py).
+# This block is overridable via VOICEFM_S3_REMOTE / VOICEFM_S3_BUCKET /
+# VOICEFM_S3_PREFIX environment variables; configure the rclone remote in
+# your own ~/.config/rclone/rclone.conf. Bridge2AI-Voice users should obtain
+# storage access through PhysioNet under the project's data-use agreement.
+storage:
+  remote: ${oc.env:VOICEFM_S3_REMOTE,s3}
+  bucket: ${oc.env:VOICEFM_S3_BUCKET,<configure-VOICEFM_S3_BUCKET>}
+  prefix: ${oc.env:VOICEFM_S3_PREFIX,}
+  sites: []

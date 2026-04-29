@@ -1,0 +1,46 @@
+model:
+  backbone: facebook/hubert-base-ls960
+  freeze_layers: 8
+  spec_augment: true
+  num_datasets: 4  # mPower, SVD, Coswara, VOICED
+
+data:
+  # mpower:  # Enable once Synapse access is approved
+  #   metadata: data/external/mpower/metadata.csv
+  #   audio_dir: data/external/mpower/audio
+  svd:
+    metadata: data/external/svd/metadata.csv
+    audio_dir: data/external/svd/audio
+  coswara:
+    metadata: data/external/coswara/metadata.csv
+    audio_dir: data/external/coswara/audio
+  voiced:
+    metadata: data/external/voiced/metadata.csv
+    audio_dir: data/external/voiced/audio
+  sample_rate: 16000
+  max_duration: 30
+
+training:
+  batch_size: 8
+  gradient_accumulation_steps: 8
+  epochs: 50
+  early_stopping_patience: 10
+  val_split: 0.15
+
+optimizer:
+  lr_backbone: 5.0e-5
+  lr_heads: 1.0e-3
+  weight_decay: 0.01
+
+loss:
+  disease_weight: 1.0
+  age_weight: 0.1
+  sex_weight: 0.1
+
+checkpoint:
+  save_dir: checkpoints_pretrain
+
+compute:
+  num_workers: 4
+  pin_memory: true
+  mixed_precision: true

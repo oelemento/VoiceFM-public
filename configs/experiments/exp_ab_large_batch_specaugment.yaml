@@ -1,0 +1,7 @@
+# Experiment AB: Large batch + SpecAugment combined
+# Combines the two improvements that showed promise independently:
+# - Exp A: batch=32 → R@5=0.220 (best retrieval)
+# - Exp B: SpecAugment → val_loss=1.63 (best generalization)
+# Base config already has batch=32, so only need to enable SpecAugment
+augmentation:
+  spec_augment: true

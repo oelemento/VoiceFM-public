@@ -1,0 +1,11 @@
+# Experiment I: Swap HuBERT for HeAR (Google Health Acoustic Representations)
+# HeAR: ViT-L trained on 313M health audio clips (coughs, breathing, etc.)
+# Backbone frozen, only projection head + task embedding trained
+# Requires: huggingface-cli login (accept HeAR license at huggingface.co/google/hear-pytorch)
+model:
+  audio_encoder:
+    type: hear
+    backbone: google/hear-pytorch
+    freeze_backbone: true
+    unfreeze_last_n: 0
+    projection_dim: 256

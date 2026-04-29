@@ -1,0 +1,13 @@
+# Experiment L: Multi-positive contrastive training
+# Uses 2 recordings per participant so InfoNCE sees multiple positives
+# for the same participant in each batch.
+training:
+  batch_size: 8
+  gradient_accumulation_steps: 4  # effective participants = 32, effective recordings = 64
+  recordings_per_participant: 2
+  category_stratify: true
+  task_stratify: true
+
+loss:
+  hard_negative_mining: true
+  hard_negative_beta: 1.0

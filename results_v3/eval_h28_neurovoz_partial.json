@@ -1,0 +1,7 @@
+{
+  "_note": "Partial 2-seed result. h28_neurovoz job 2810962 running 11h+ at 12h SLURM timeout risk. Seeds 42+43 logged; seeds 44-46 may not complete. Extracted from log eval_h28_v3_neurovoz_*.out.",
+  "h28_whisper_ft4_256d": [
+    {"auroc": 0.944, "std": 0.030, "seed": 42, "n": 107},
+    {"auroc": 0.913, "std": 0.057, "seed": 43, "n": 107}
+  ]
+}

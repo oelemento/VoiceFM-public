@@ -1,0 +1,15 @@
+# Experiment D Reproduction 2: match original Exp D exactly
+# Key finding: old train.py never passed stratify_col, so splits were random.
+# New train.py reads stratify_by from data.yaml (disease_category), producing
+# different splits. Override to null to match original behavior.
+data:
+  splits:
+    stratify_by: null
+
+loss:
+  hard_negative_mining: true
+  hard_negative_beta: 1.0
+
+training:
+  category_stratify: false
+  task_stratify: false

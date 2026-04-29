@@ -1,0 +1,5 @@
+# Experiment B: Audio augmentation (SpecAugment)
+# Applies time and frequency masking to HuBERT frame features during training
+# Improves generalization, prevents overfitting to site-specific audio artifacts
+augmentation:
+  spec_augment: true

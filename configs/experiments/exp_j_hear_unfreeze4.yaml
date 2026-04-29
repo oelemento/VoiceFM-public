@@ -1,0 +1,10 @@
+# Experiment J: HeAR with last 4 transformer layers unfrozen
+# HeAR ViT-L has 24 layers; unfreeze layers 20-23 (last 4)
+# Backbone LR 1e-5, projection LR 1e-4 (from train.yaml defaults)
+model:
+  audio_encoder:
+    type: hear
+    backbone: google/hear-pytorch
+    freeze_backbone: true
+    unfreeze_last_n: 4
+    projection_dim: 256

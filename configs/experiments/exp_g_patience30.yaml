@@ -1,0 +1,6 @@
+# Experiment G: Increased early stopping patience (30 → from 25)
+# Several experiments (Exp AB, Exp E) stopped before converging
+# Also run for more epochs (300 vs 200) to give more room
+training:
+  early_stopping_patience: 30
+  epochs: 300

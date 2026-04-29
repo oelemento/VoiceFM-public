@@ -1,0 +1,28 @@
+# H8c: Curated features (domain-knowledge selection) — seed 42
+loss:
+  hard_negative_mining: true
+  hard_negative_beta: 1.0
+data:
+  use_gsd: true
+  exclude_features:
+    # Rare GSD flags (<10 cases)
+    - gsd_laryng_cancer
+    - gsd_huntingtons
+    - gsd_als
+    - gsd_precancerous_lesion
+    - gsd_laryngitis
+    - gsd_glottic_insufficiency
+    - gsd_bipolar
+    # Rare demographics
+    - race_pacific_islander
+    - race_indigenous
+    # Redundant / less voice-relevant
+    - smoking_missing
+    - func_self_care
+    - func_independent_living
+  splits:
+    train: 0.70
+    val: 0.15
+    test: 0.15
+    seed: 42
+    stratify_by: disease_category

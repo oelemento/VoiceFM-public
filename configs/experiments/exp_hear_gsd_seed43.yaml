@@ -1,0 +1,20 @@
+# H22: HeAR-based VoiceFM on GSD labels — seed 43
+# HeAR ViT-L frozen backbone + contrastive training on clinician-validated labels
+model:
+  audio_encoder:
+    type: hear
+    backbone: google/hear-pytorch
+    freeze_backbone: true
+    unfreeze_last_n: 0
+    projection_dim: 256
+loss:
+  hard_negative_mining: true
+  hard_negative_beta: 1.0
+data:
+  use_gsd: true
+  splits:
+    train: 0.70
+    val: 0.15
+    test: 0.15
+    seed: 43
+    stratify_by: disease_category

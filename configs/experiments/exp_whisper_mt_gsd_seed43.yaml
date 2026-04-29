@@ -1,0 +1,26 @@
+# H29: Whisper multi-task classification, fine-tune top 4 layers — seed 43
+# No contrastive loss, no bottleneck. Direct classification on 1280d.
+model:
+  backbone:
+    name: openai/whisper-large-v2
+    unfreeze_last_n: 4
+  tasks:
+    - {name: is_control, type: binary, input_key: gsd_control, weight: 1.0}
+    - {name: cat_neuro, type: binary, input_key: cat_neuro, weight: 1.0}
+    - {name: cat_voice, type: binary, input_key: cat_voice, weight: 1.0}
+    - {name: cat_mood, type: binary, input_key: cat_mood, weight: 1.0}
+    - {name: cat_respiratory, type: binary, input_key: cat_respiratory, weight: 1.0}
+    - {name: age, type: regression, input_key: age, weight: 0.5}
+    - {name: phq9, type: regression, input_key: phq9_total, weight: 0.3}
+    - {name: gad7, type: regression, input_key: gad7_total, weight: 0.3}
+    - {name: vhi10, type: regression, input_key: vhi10_total, weight: 0.3}
+batch_size: 8
+gradient_accumulation_steps: 8
+data:
+  use_gsd: true
+  splits:
+    train: 0.70
+    val: 0.15
+    test: 0.15
+    seed: 43
+    stratify_by: disease_category

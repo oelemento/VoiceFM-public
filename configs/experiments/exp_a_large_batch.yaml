@@ -1,0 +1,7 @@
+# Experiment A: Larger batch size
+# 32 participants per micro-batch × 2 grad accum = 64 effective
+# Gives 32 in-batch negatives instead of 8 (4x improvement)
+# Risk: may OOM on A40 (44GB) — batch_size=64 OOMs, batch_size=8 works
+training:
+  batch_size: 32
+  gradient_accumulation_steps: 2

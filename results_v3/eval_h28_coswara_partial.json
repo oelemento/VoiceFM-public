@@ -1,0 +1,7 @@
+{
+  "_note": "Partial 2-seed result. h28_coswara job 2810959 hit 12h SLURM timeout before full 5-seed completion. Seeds 42+43 completed; seeds 44-46 not run. Extracted from log eval_h28_v3_coswara_*.out.",
+  "h28_whisper_ft4_256d": [
+    {"auroc": 0.763, "std": 0.032, "seed": 42, "n": 2073},
+    {"auroc": 0.760, "std": 0.024, "seed": 43, "n": 2073}
+  ]
+}

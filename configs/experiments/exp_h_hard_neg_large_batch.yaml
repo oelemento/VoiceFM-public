@@ -1,0 +1,10 @@
+# Experiment H: Hard negatives + larger batch (combining best of Exp A + D)
+# Exp D (hard negatives): best R@5=0.227, val_loss=2.58
+# Exp A (batch=32): best R@5=0.189, val_loss=2.64
+# Combining the two best individual improvements
+training:
+  batch_size: 32
+  gradient_accumulation_steps: 2
+loss:
+  hard_negative_mining: true
+  hard_negative_beta: 1.0

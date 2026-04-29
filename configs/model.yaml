@@ -1,0 +1,23 @@
+audio_encoder:
+  type: hubert  # hubert | hear
+  backbone: facebook/hubert-base-ls960
+  freeze_layers: 8  # freeze layers 0-7, fine-tune 8-11
+  pooling: attentive  # attentive | mean
+  hidden_dim: 768
+  projection_dim: 256
+
+clinical_encoder:
+  num_layers: 4
+  num_heads: 4
+  hidden_dim: 256
+  dropout: 0.1
+  projection_dim: 256
+
+contrastive:
+  temperature_init: 0.07
+  learn_temperature: true
+
+auxiliary:
+  disease_category_weight: 0.1
+  age_regression_weight: 0.05
+  num_disease_categories: 4  # voice, neuro, mood, respiratory

@@ -1,0 +1,10 @@
+# Exp D with GSD clinical labels + enriched demographics
+# Same hard negative mining as exp_d, but uses clinician-validated
+# diagnosis labels instead of self-reported condition flags,
+# plus additional demographic/functional features.
+loss:
+  hard_negative_mining: true
+  hard_negative_beta: 1.0
+
+data:
+  use_gsd: true
