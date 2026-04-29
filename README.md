@@ -84,4 +84,4 @@ Code is released under the MIT License (see `LICENSE`). The Bridge2AI-Voice data
 
 ## Acknowledgements
 
-This work was supported by the NIH Bridge2AI Common Fund Program (OT2OD032720, Bridge2AI-Voice) and NIH R01DC020135. We thank the Bridge2AI-Voice Consortium and all study participants.
+This work was supported by the NIH Bridge2AI Common Fund Program (OT2OD032720, Bridge2AI-Voice). We thank the Bridge2AI-Voice Consortium and all study participants.
