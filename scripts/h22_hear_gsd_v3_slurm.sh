@@ -2,16 +2,16 @@
 # ============================================================================
 # CLUSTER-SPECIFIC TEMPLATE
 # ----------------------------------------------------------------------------
-# This script targets the Cornell Cayuga HPC cluster (NVIDIA A40/A100 nodes,
-# SLURM 25.05+, scu-gpu partition). It will NOT run unmodified elsewhere.
+# This script targets your HPC cluster (GPU nodes,
+# SLURM, cluster-specific partition). It will NOT run unmodified elsewhere.
 # Before submitting, edit:
 #   - #SBATCH --partition=...   to match your cluster's partition
-#   - the `module load`         block (Cayuga uses lmod + mamba)
+#   - the `module load`         block (your cluster's module + conda setup)
 #   - the `source activate`     line (replace with your venv/conda env)
 #   - the `cd ...` line          to point at your project root
 # ============================================================================
 #SBATCH --job-name=h22-hear-v3
-#SBATCH --partition=scu-gpu
+#SBATCH --partition=<your-partition>
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=48G

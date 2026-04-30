@@ -124,9 +124,9 @@ Same as Paths A and B above.
 
 ## SLURM templates
 
-Every long-running job has a `*_slurm.sh` wrapper. **These are written for the Cornell Cayuga cluster and will not run unedited on other systems.** Before submitting, edit:
+Every long-running job has a `*_slurm.sh` wrapper. **These are written for your HPC cluster and will not run unedited on other systems.** Before submitting, edit:
 
-- `#SBATCH --partition=...` (Cayuga uses `scu-gpu`)
+- `#SBATCH --partition=...` (your cluster's partition name)
 - `module load mamba && source activate voicefm` (replace with your environment activation)
 - `cd ~/VoiceFM` (replace with your project root)
 
