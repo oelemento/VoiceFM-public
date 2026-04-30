@@ -8,7 +8,7 @@ Row 3:            (g) Cohen's d (mPower)
 All panels pre-rendered at identical size/padding for consistent alignment.
 
 Usage:
-    python scripts/paper_fig5_composite_v3.py
+    python scripts/paper_fig5_composite.py
 """
 
 import json
@@ -57,9 +57,12 @@ def plot_a(ax):
             continue
         d = roc[cat]
         s = styles[cat]
-        auc_val = d.get("auroc", d.get("auroc_mean", 0))
-        n_val = d.get("n_total", len(d.get("labels", [])))
-        lbl = f"{labels[cat]} (AUC={auc_val:.2f})"
+        auc_val = d.get("auroc_mean", d.get("auroc", 0))
+        auc_std = d.get("auroc_std", 0)
+        if auc_std and auc_std > 0:
+            lbl = f"{labels[cat]} (AUC={auc_val:.2f}±{auc_std:.2f})"
+        else:
+            lbl = f"{labels[cat]} (AUC={auc_val:.2f})"
         ax.plot(d["fpr"], d["tpr"], color=s["color"], linewidth=s["lw"],
                 linestyle=s["ls"], label=lbl)
     ax.plot([0, 1], [0, 1], "k--", linewidth=0.5, alpha=0.3)
@@ -218,29 +221,21 @@ def plot_d(ax):
 # ── Panel E: mPower trajectories ─────────────────────────────────────
 
 def plot_e(ax):
-    candidates = [
-        RESULTS / "mpower_pd_whisper" / "test_predictions_deidentified.csv",
-        RESULTS / "mpower_pd_whisper" / "whisper-voicefm_full_seed43" / "test_predictions.csv",
-    ]
-    pred_path = next((p for p in candidates if p.exists()), None)
-    if pred_path is None:
+    pred_path = RESULTS / "mpower_pd_whisper" / "whisper-voicefm_full_seed43" / "test_predictions.csv"
+    if not pred_path.exists():
         ax.text(0.5, 0.5, "No trajectory data", ha="center", transform=ax.transAxes, fontsize=FS_AXIS)
         panel_label(ax, "e")
         return
 
     pred_df = pd.read_csv(pred_path)
-    if "participant" in pred_df.columns and "participant_id" not in pred_df.columns:
-        pred_df = pred_df.rename(columns={"participant": "participant_id"})
     sus = pred_df[pred_df["recording_type"] == "sustained"].copy()
-    if "months_since_enroll" in sus.columns:
-        sus["month_bin"] = sus["months_since_enroll"].astype(int)
-    else:
-        sus["date"] = pd.to_datetime(sus["created_on"], unit="ms", errors="coerce")
-        sus = sus.dropna(subset=["date"])
-        first_date = sus.groupby("participant_id")["date"].min()
-        sus["months"] = sus.apply(
-            lambda r: (r["date"] - first_date[r["participant_id"]]).days / 30.44, axis=1)
-        sus["month_bin"] = np.floor(sus["months"]).astype(int)
+    sus["date"] = pd.to_datetime(sus["created_on"], unit="ms", errors="coerce")
+    sus = sus.dropna(subset=["date"])
+
+    first_date = sus.groupby("participant_id")["date"].min()
+    sus["months"] = sus.apply(
+        lambda r: (r["date"] - first_date[r["participant_id"]]).days / 30.44, axis=1)
+    sus["month_bin"] = np.floor(sus["months"]).astype(int)
     max_months = 5
 
     colors = {"PD": "#B2182B", "Control": "#2166AC"}

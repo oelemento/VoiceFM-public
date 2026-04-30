@@ -225,26 +225,40 @@
     }
   },
   "nn_vw": {
-    "cat_match_rate": 0.6815816857440167,
-    "mean_severity_diff": 9.049372206852523,
+    "cat_match_rate": 0.6929078014184398,
+    "cat_match_per_pid_mean": 0.6929078014184398,
+    "cat_match_per_pid_sd": 0.32097751365232235,
     "k": 5,
-    "n_pairs": 4805
+    "n_participants": 846,
+    "cat_match_ci95": 0.02162945110728538,
+    "cat_match_se": 0.011035434238410908
   },
   "nn_fw": {
-    "cat_match_rate": 0.6481287894626804,
-    "mean_severity_diff": 9.086151882578175,
+    "cat_match_rate": 0.6269503546099291,
+    "cat_match_per_pid_mean": 0.6269503546099291,
+    "cat_match_per_pid_sd": 0.32683805575878366,
     "k": 5,
-    "n_pairs": 4783
+    "n_participants": 846,
+    "cat_match_ci95": 0.022024370699974344,
+    "cat_match_se": 0.011236923826517522
   },
   "within_participant": {
     "cohort": "train_846",
-    "n_participants": 846,
-    "n_intra_pairs": 827786,
-    "n_inter_pairs": 10000,
-    "intra_mean": 0.9372669458389282,
-    "intra_std": 0.0640946552157402,
-    "inter_mean": 0.8418363176852465,
-    "inter_std": 0.11918777936166153,
-    "separation": 0.09543062815368175
+    "n_participants": 845,
+    "intra_mean": 0.935481851340751,
+    "intra_sd_per_pid": 0.0191627309984805,
+    "inter_mean": 0.8408353763924548,
+    "inter_sd_per_pid": 0.030633595909045155,
+    "separation": 0.09464647494829626,
+    "paired_t_p": 0.0
+  },
+  "nn_comparison": {
+    "delta": 0.06595744680851068,
+    "welch_t": 4.187886113490421,
+    "welch_p": 2.960801149164914e-05,
+    "paired_t": 6.144977893628503,
+    "paired_p": 1.2310282219163148e-09,
+    "chance_baseline_random_pair": 0.24300979718212248,
+    "cohort": "846 training participants (single-label canonical category)"
   }
 }

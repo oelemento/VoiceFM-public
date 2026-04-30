@@ -11,6 +11,7 @@ Usage:
 """
 
 import csv
+import re
 from pathlib import Path
 
 import pikepdf
@@ -20,7 +21,42 @@ from reportlab.lib.units import inch
 from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.pdfgen import canvas
-from reportlab.platypus import Table, TableStyle
+from reportlab.platypus import Paragraph, Table, TableStyle
+
+
+_SUPER_MAP = {
+    "⁰": "0", "¹": "1", "²": "2", "³": "3", "⁴": "4", "⁵": "5",
+    "⁶": "6", "⁷": "7", "⁸": "8", "⁹": "9", "⁻": "-", "⁺": "+",
+}
+_SUPER_RE = re.compile("([" + "".join(_SUPER_MAP.keys()) + "]+)")
+
+
+def _caption_to_html(text: str) -> str:
+    """Convert Unicode superscript runs into reportlab <super>...</super> tags
+    so Paragraph renders them properly (Helvetica lacks the superscript glyphs)."""
+    def repl(m):
+        return "<super>" + "".join(_SUPER_MAP[c] for c in m.group(1)) + "</super>"
+    return _SUPER_RE.sub(repl, text).replace("&", "&amp;")
+
+
+def _draw_caption(c, text, x, y_top, width, font_size=8, leading=11, y_bot=None):
+    """Render a caption with auto-wrapping and inline <super> tags.
+
+    Returns the new y after drawing. If the caption would overflow below
+    y_bot, it is truncated to what fits.
+    """
+    style = ParagraphStyle(
+        name="Caption",
+        fontName="Helvetica",
+        fontSize=font_size,
+        leading=leading,
+        alignment=0,  # left
+    )
+    p = Paragraph(_caption_to_html(text), style)
+    avail_h = (y_top - y_bot) if y_bot is not None else y_top
+    w, h = p.wrap(width, avail_h)
+    p.drawOn(c, x, y_top - h)
+    return y_top - h
 
 PROJECT_ROOT = Path(__file__).parent.parent
 PAPER_DIR = PROJECT_ROOT / "paper_v3"
@@ -143,17 +179,7 @@ def add_figure_page(c, title, panels, caption=None):
         y -= h + 10
 
     if caption:
-        c.setFont("Helvetica", 8)
-        # Wrap caption — print as many lines as fit between current y and the
-        # bottom margin (each line is 11pt). Long captions like Fig 6's now
-        # render in full instead of being silently truncated to 6 lines.
-        from reportlab.lib.utils import simpleSplit
-        lines = simpleSplit(caption, "Helvetica", 8, USABLE_W)
-        for line in lines:
-            if y < MARGIN:
-                break
-            c.drawString(MARGIN, y, line)
-            y -= 11
+        _draw_caption(c, caption, MARGIN, y, USABLE_W, y_bot=MARGIN)
 
 
 def add_table_page(c, title, csv_path, caption=None, col_widths=None):
@@ -220,14 +246,7 @@ def add_table_page(c, title, csv_path, caption=None, col_widths=None):
     y -= h + 15
 
     if caption:
-        c.setFont("Helvetica", 8)
-        from reportlab.lib.utils import simpleSplit
-        lines = simpleSplit(caption, "Helvetica", 8, USABLE_W)
-        for line in lines[:10]:
-            if y < MARGIN:
-                break
-            c.drawString(MARGIN, y, line)
-            y -= 11
+        _draw_caption(c, caption, MARGIN, y, USABLE_W, y_bot=MARGIN)
 
 
 def add_stacked_page(c, title, panels_top, panels_bottom, caption=None):
@@ -266,13 +285,7 @@ def add_stacked_page(c, title, panels_top, panels_bottom, caption=None):
         draw_image(c, panels_bottom, MARGIN, y, USABLE_W, half_h)
 
     if caption:
-        c.setFont("Helvetica", 8)
-        from reportlab.lib.utils import simpleSplit
-        lines = simpleSplit(caption, "Helvetica", 8, USABLE_W)
-        cy = MARGIN + 5
-        for line in lines[:4]:
-            c.drawString(MARGIN, cy, line)
-            cy -= 11
+        _draw_caption(c, caption, MARGIN, MARGIN + 50, USABLE_W, y_bot=MARGIN)
 
 
 def main():
@@ -374,26 +387,24 @@ def main():
         "Figure 2. GSD classification performance",
         P / "fig2a_results.png",
         P / "fig2b_diagnoses.png",
-        "Figure 2. a, Mean AUROC across five gold-standard diagnosis (GSD) categories for four models: "
-        "VoiceFM-Whisper (0.952 ± 0.005), VoiceFM-HuBERT (0.938 ± 0.006), Frozen Whisper (0.926 ± 0.013), "
-        "Frozen HuBERT (0.885 ± 0.017). VoiceFM-Whisper (primary model) significantly exceeds all three "
-        "other models: VoiceFM-HuBERT (p = 0.012), Frozen Whisper (p = 0.013), and Frozen HuBERT (p = 0.0009; "
-        "Welch t-test, 5 seeds). Left group shows the average across categories; right groups show "
-        "per-category performance. Error bars: SD across 5 random seeds (42-46). "
-        "b, Per-diagnosis AUROC for 9 individual GSD conditions (N ≥ 5 per condition). "
-        "All models evaluated with identical methodology (unified script, same splits)."
+        "Figure 2. a, Mean AUROC across five gold-standard diagnosis (GSD) categories for four models — "
+        "VoiceFM-Whisper, VoiceFM-HuBERT, Frozen Whisper, Frozen HuBERT. Left group shows the average "
+        "across categories; right groups show per-category performance. Error bars: SD across 5 seeds (42–46). "
+        "Significance markers: Welch's t-test on the seed-level AUROC distributions. "
+        "b, Per-diagnosis AUROC for 9 individual GSD conditions (N ≥ 5 per condition)."
     )
 
     # ── Figure 3: Prospective evaluation (NEW) ────────────────────────
     add_figure_page(c,
         "Figure 3. Prospective evaluation on held-out cohort",
         P / "fig3_prospective.png",
-        "Figure 3. Out-of-sample evaluation on 138 participants held out from training. "
+        "Figure 3. Out-of-sample evaluation on the 138 participants held out from training, enrolled "
+        "into B2AI Voice after the training cohort was finalized. "
         "a, Disease-category AUROCs for VoiceFM-Whisper (blue) vs VoiceFM-HuBERT (gray); "
-        "VoiceFM-Whisper achieves Control 0.910, Voice 0.964, Neuro 0.984, Mood 0.849, Respiratory 0.832 "
-        "(3-seed mean ± SD). b, Per-diagnosis AUROCs for 9 individual conditions, sorted by VoiceFM-Whisper "
-        "performance: Alzheimer's/MCI 0.986, Parkinson's 0.928, airway stenosis 0.891, laryngeal dystonia 0.890. "
-        "Cell shading: green ≥ 0.85, yellow 0.70-0.85, red < 0.70."
+        "5-seed mean ± SD (seeds 42–46). The held-out cohort is fixed across seeds; reported variance "
+        "reflects probe sensitivity to the training-cohort split. "
+        "b, Per-diagnosis AUROCs for 9 individual GSD conditions, sorted by VoiceFM-Whisper performance. "
+        "Cell shading: green ≥ 0.85, yellow 0.70–0.85, red < 0.70."
     )
 
     # ── Figure 4: External Transfer + Few-shot ────────────────────────
@@ -406,22 +417,25 @@ def main():
         "and MDVR-KCL (Parkinson's disease, n=73). VoiceFM-Whisper (blue) vs Frozen Whisper (gray). "
         "5-fold cross-validation with logistic regression probes on frozen embeddings. Error bars: SD across 5 seeds. "
         "b, Few-shot learning curves (k=1 to 20 labeled examples per class, 100 random trials per k). "
-        "Shaded regions: standard deviation."
+        "Shaded bands show standard deviation of the AUROC distribution: for VoiceFM-Whisper, pooled "
+        "across (5 seeds × 100 trials) using the law of total variance (within-trial + between-seed); "
+        "for Frozen Whisper (deterministic encoder), across the 100 trials. Both bands therefore "
+        "measure sensitivity to support-set sampling and are directly comparable."
     )
 
     # ── Figure 5: Recording Attribution ───────────────────────────────
     add_figure_page(c,
         "Figure 5. Recording task attribution",
         P / "fig4_attribution.png",
-        "Figure 5. a, Per-recording-type AUROC heatmap for the top 25 recording types across the five "
+        "Figure 5. a, Per-recording-type AUROC heatmap for the top recording types across the five "
         "disease categories (Control vs Disease, Voice, Neurological, Mood, Respiratory). "
-        "Cognitive-linguistic tasks and spontaneous speech rank highest for neurological conditions. "
-        "Blank (white) cells indicate combinations of recording type and disease category where AUROC "
-        "could not be reliably estimated due to too few test participants having both that recording "
-        "type and that diagnosis. b, Greedy forward selection on recording types: starting from no "
-        "recordings, iteratively add the task type that most increases mean AUROC across the five "
-        "categories (solid line: 5-seed mean; shaded band: ± SD). The selected subset peaks at ~0.97 "
-        "(annotated peak), exceeding the all-types baseline (red dashed line, 0.94)."
+        "Blank cells indicate recording type × disease combinations where AUROC could not be reliably "
+        "estimated due to insufficient test participants. b, Greedy forward selection on recording types: "
+        "starting from no recordings, iteratively add the task type that most increases mean AUROC across "
+        "the five categories. Solid line: 5-seed mean; shaded band: ± SD. The all-types baseline is shown "
+        "as a red dashed line. Selection is performed on the same test set used for evaluation, so "
+        "absolute peak AUROC may be optimistically biased; relative ranking of task types is the "
+        "primary finding."
     )
 
     # ── Figure 6: PD Detection (composite) ─────────────────────────────
@@ -430,22 +444,23 @@ def main():
         P / "fig5_pd_combined.png",
         "Figure 6. Application to Parkinson's disease. "
         "Row 1 (panels a–c) shows zero-shot, cross-lingual evaluation on NeuroVoz "
-        "(107 participants, Spanish speech). "
-        "a, ROC curves for VoiceFM-Whisper (frozen) by task category (all 0.915, speech 0.948, "
-        "DDK 0.917, vowel 0.676). "
-        "b, Incremental R-squared: cumulative variance of VoiceFM P(PD) explained by eGeMAPSv02 feature groups "
-        "(full feature set R² = 0.95). c, Cohen's d effect sizes (PD vs HC) for top 12 eGeMAPSv02 features; "
-        "formant amplitudes (F1/F2/F3 amp_µ) dominate (|d| > 1.6). Bars are colour-coded by feature class — "
-        "Articulatory (red), Spectral (orange), Voicing (purple), Loudness (blue), Phonatory (gray) — "
-        "with the legend at the lower right of the panel. "
-        "Row 2 (panels d–f) shows fine-tuned, longitudinal evaluation on the mPower sustained-vowel cohort "
-        "(VoiceFM-Whisper fine-tuned, seed 43, 5 epochs; 585 test participants, 101 PD / 484 control). "
-        "d, Test-set ROC (sustained 0.854, countdown 0.802, combined 0.870). "
-        "e, P(PD) trajectories over 5 months (50 PD vs 50 control participants). "
-        "f, Incremental R-squared on mPower sustained vowels (full feature set R² = 0.48). "
-        "g, Cohen's d for top 12 mPower eGeMAPSv02 features; formant frequencies and bandwidths dominate "
-        "(F2bw_σ d=+0.57, F2 freq d=+0.55, F3 freq d=+0.45). Features marked † are sex-confounded "
-        "and not significant within sex; arrows ↑/↓ on labels indicate the direction of the PD−HC difference."
+        "(107 participants, Spanish speech; 5-seed mean ± SD throughout). "
+        "a, ROC curves for VoiceFM-Whisper (frozen) by task category. The pooled all-tasks ROC is "
+        "essentially the speech ROC, consistent with a speech-dominated articulatory signal. "
+        "b, Incremental R²: cumulative in-sample variance of VoiceFM P(PD) explained by eGeMAPSv02 "
+        "feature groups, in canonical order (F0/jitter/shimmer/HNR → loudness → formants → spectral → MFCC/voicing). "
+        "c, Cohen's d effect sizes (PD vs HC) for top 12 eGeMAPSv02 features. Bars are color-coded by "
+        "feature class — articulatory (red), spectral (orange), voicing (purple), loudness (blue), "
+        "phonatory (gray) — with the legend at the lower right of the panel. "
+        "Row 2 (panels d–f) shows fine-tuned evaluation on the mPower sustained-vowel cohort "
+        "(VoiceFM-Whisper fine-tune; 585 test participants, 101 PD / 484 control). "
+        "d, Test-set ROC (sustained vs countdown vs combined). "
+        "e, P(PD) trajectories over 5 months (50 PD vs 50 control participants; thin lines: individual "
+        "trajectories, thick lines: monthly group means). "
+        "f, Incremental R² on mPower sustained vowels. "
+        "g, Cohen's d for top 12 mPower eGeMAPSv02 features; formant frequencies and bandwidths "
+        "dominate. Features marked † are sex-confounded and not significant within sex; arrows ↑/↓ on "
+        "labels indicate the direction of the PD−HC difference."
     )
 
     # ── Supplementary Figures ─────────────────────────────────────────
@@ -456,32 +471,32 @@ def main():
         "VoiceFM-HeAR, Frozen Whisper, Frozen HuBERT, Frozen HeAR — and a demographics-only baseline "
         "(black bars: logistic regression on age + sex alone, no audio). VoiceFM-HeAR uses a frozen "
         "Google HeAR encoder with only the projection layer trainable. The demographic baseline "
-        "reaches 0.73 for control vs disease and 0.83 for the neurological category (driven by age, "
-        "an established risk factor for PD and AD/MCI), but stays at chance level for the voice (0.55), "
-        "mood (0.57), and respiratory (0.57) categories. All audio-based models substantially exceed the "
-        "demographic baseline on every category, confirming that the embeddings carry disease-specific "
-        "voice information beyond age and sex. Error bars: standard deviation across 5 seeds."
+        "is shown to rule out the possibility that AUROC is driven by demographic confounding rather "
+        "than acoustic disease information. Error bars: standard deviation across 5 seeds (42–46)."
     )
 
     add_figure_page(c,
         "Figure S2. Acoustic grounding (interpretability)",
         P / "figS2_interpretability.png",
-        "Figure S2. a, Ridge regression R-squared (5-fold CV) for 14 classical acoustic features decoded "
-        "from VoiceFM-Whisper embeddings (blue) vs Frozen Whisper embeddings (gray). "
-        "VoiceFM-Whisper mean R² = 0.21; Frozen Whisper mean R² = -0.60. "
-        "b, Spearman rank correlation between acoustic features and the top PCA components of VoiceFM-Whisper "
-        "embeddings. PC1 loads on voice quality measures (CPPS, HNR negative; jitter positive)."
+        "Figure S2. a, Ridge regression R² (5-fold CV, scaler fit inside fold) for 14 classical acoustic "
+        "features decoded from VoiceFM-Whisper (blue) vs Frozen Whisper (gray) embeddings. "
+        "b, Spearman rank correlation between each acoustic feature and the top PCA components of "
+        "VoiceFM-Whisper embeddings. PC1 separates healthy-voice markers (CPPS, HNR) from "
+        "pathological-voice markers (jitter, shimmer)."
     )
 
     add_figure_page(c,
         "Figure S3. Embedding structure",
         P / "figS3_embedding_structure.png",
-        "Figure S3. a, Nearest-neighbor retrieval (k=5, cosine distance): VoiceFM-Whisper neighbors show "
-        "a higher diagnosis category match rate (0.682 vs 0.648) than Frozen Whisper neighbors. "
-        "b, Within-participant consistency for VoiceFM-Whisper: mean cosine "
-        "similarity between embeddings of different recording types from the same participant (intra-person, 0.937) "
-        "vs different participants (inter-person, 0.842). Separation Δ = 0.095 "
-        "(computed across the 846 training participants; 827,786 intra-person and 10,000 inter-person pairs)."
+        "Figure S3. a, Nearest-neighbor retrieval (k=5, cosine distance) on the 846 training participants: "
+        "fraction of NNs sharing the query participant's GSD category, for VoiceFM-Whisper vs Frozen Whisper. "
+        "The chance baseline (random pair sharing a category) is ≈0.24. Welch's t-test on the per-participant "
+        "match rates is significant (p = 3.0×10⁻⁵), and the effect is robust across k = 1, 3, 10 "
+        "(all p < 10⁻⁴). Error bars: 95% CI of the mean. "
+        "b, Within-participant consistency for VoiceFM-Whisper: mean cosine similarity between embeddings "
+        "of different recording types from the same participant (intra-person) vs different participants "
+        "(inter-person). Bars show per-participant means; error bars show ±1 SD across the 845 training "
+        "participants who have ≥2 recordings."
     )
 
     # ── Save ──────────────────────────────────────────────────────────

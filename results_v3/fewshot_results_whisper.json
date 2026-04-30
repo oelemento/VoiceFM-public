@@ -42,7 +42,9 @@
       "voicefm_whisper": {
         "mean_auroc": 0.5086565242052247,
         "std_auroc": 0.004051921192848346,
-        "n_seeds": 5
+        "n_seeds": 5,
+        "std_auroc_seeds": 0.004530185613340469,
+        "std_auroc_pooled": 0.06177661970444805
       }
     },
     "k=2": {
@@ -87,7 +89,9 @@
       "voicefm_whisper": {
         "mean_auroc": 0.5242956720392192,
         "std_auroc": 0.007266408396081885,
-        "n_seeds": 5
+        "n_seeds": 5,
+        "std_auroc_seeds": 0.008124091562957157,
+        "std_auroc_pooled": 0.06402132661641631
       }
     },
     "k=5": {
@@ -132,7 +136,9 @@
       "voicefm_whisper": {
         "mean_auroc": 0.5524691438897674,
         "std_auroc": 0.007838279165927475,
-        "n_seeds": 5
+        "n_seeds": 5,
+        "std_auroc_seeds": 0.008763462520817094,
+        "std_auroc_pooled": 0.05976505684413729
       }
     },
     "k=10": {
@@ -177,7 +183,9 @@
       "voicefm_whisper": {
         "mean_auroc": 0.5795708314298766,
         "std_auroc": 0.0042245098534219785,
-        "n_seeds": 5
+        "n_seeds": 5,
+        "std_auroc_seeds": 0.004723145601934609,
+        "std_auroc_pooled": 0.05079895249466548
       }
     },
     "k=20": {
@@ -222,7 +230,9 @@
       "voicefm_whisper": {
         "mean_auroc": 0.6174404794482452,
         "std_auroc": 0.0056347018921462325,
-        "n_seeds": 5
+        "n_seeds": 5,
+        "std_auroc_seeds": 0.006299788231892832,
+        "std_auroc_pooled": 0.040519472592680295
       }
     }
   },
@@ -269,7 +279,9 @@
       "voicefm_whisper": {
         "mean_auroc": 0.510718295822235,
         "std_auroc": 0.009150516328054904,
-        "n_seeds": 5
+        "n_seeds": 5,
+        "std_auroc_seeds": 0.010230588269376267,
+        "std_auroc_pooled": 0.10093585388338516
       }
     },
     "k=2": {
@@ -314,7 +326,9 @@
       "voicefm_whisper": {
         "mean_auroc": 0.547009820891198,
         "std_auroc": 0.015470541347380273,
-        "n_seeds": 5
+        "n_seeds": 5,
+        "std_auroc_seeds": 0.01729659105073174,
+        "std_auroc_pooled": 0.09841816644468804
       }
     },
     "k=5": {
@@ -359,7 +373,9 @@
       "voicefm_whisper": {
         "mean_auroc": 0.5856114643835204,
         "std_auroc": 0.014598778769186058,
-        "n_seeds": 5
+        "n_seeds": 5,
+        "std_auroc_seeds": 0.01632193085819037,
+        "std_auroc_pooled": 0.08245354010499263
       }
     },
     "k=10": {
@@ -404,7 +420,9 @@
       "voicefm_whisper": {
         "mean_auroc": 0.6239937906181192,
         "std_auroc": 0.012326942314860185,
-        "n_seeds": 5
+        "n_seeds": 5,
+        "std_auroc_seeds": 0.013781940485372996,
+        "std_auroc_pooled": 0.05760045766805402
       }
     },
     "k=20": {
@@ -449,7 +467,9 @@
       "voicefm_whisper": {
         "mean_auroc": 0.6591746633634736,
         "std_auroc": 0.012891938590043174,
-        "n_seeds": 5
+        "n_seeds": 5,
+        "std_auroc_seeds": 0.014413625524544666,
+        "std_auroc_pooled": 0.04591844975510966
       }
     }
   },
@@ -496,7 +516,9 @@
       "voicefm_whisper": {
         "mean_auroc": 0.68405,
         "std_auroc": 0.011615492527941555,
-        "n_seeds": 5
+        "n_seeds": 5,
+        "std_auroc_seeds": 0.012986515442309096,
+        "std_auroc_pooled": 0.224377855104088
       }
     },
     "k=2": {
@@ -541,7 +563,9 @@
       "voicefm_whisper": {
         "mean_auroc": 0.8217142857142858,
         "std_auroc": 0.006471784584142444,
-        "n_seeds": 5
+        "n_seeds": 5,
+        "std_auroc_seeds": 0.007235675132938856,
+        "std_auroc_pooled": 0.142946801603403
       }
     },
     "k=5": {
@@ -586,7 +610,9 @@
       "voicefm_whisper": {
         "mean_auroc": 0.8569772727272728,
         "std_auroc": 0.017771085136877467,
-        "n_seeds": 5
+        "n_seeds": 5,
+        "std_auroc_seeds": 0.019868677199997086,
+        "std_auroc_pooled": 0.07104682772912455
       }
     },
     "k=10": {
@@ -631,7 +657,9 @@
       "voicefm_whisper": {
         "mean_auroc": 0.882212121212121,
         "std_auroc": 0.030212835467682324,
-        "n_seeds": 5
+        "n_seeds": 5,
+        "std_auroc_seeds": 0.03377897694937716,
+        "std_auroc_pooled": 0.08349705679861548
       }
     },
     "k=20": {

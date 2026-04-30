@@ -50,9 +50,9 @@ def collect(d, items):
         vw = d.get(f"voicefm_whisper/{key}", [])
         vh = d.get(f"voicefm_hubert/{key}", [])
         vw_m.append(np.mean(vw) if vw else 0)
-        vw_s.append(np.std(vw) if vw else 0)
+        vw_s.append(np.std(vw, ddof=1) if len(vw) > 1 else 0)
         vh_m.append(np.mean(vh) if vh else 0)
-        vh_s.append(np.std(vh) if vh else 0)
+        vh_s.append(np.std(vh, ddof=1) if len(vh) > 1 else 0)
     return vw_m, vw_s, vh_m, vh_s
 
 

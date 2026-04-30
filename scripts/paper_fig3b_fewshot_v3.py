@@ -5,7 +5,7 @@
 k=1,2,5,10,20 with mean ± std bands.
 
 Usage:
-    python scripts/paper_fig3b_fewshot_v3.py
+    python scripts/paper_fig3b_fewshot.py
 """
 
 import json
@@ -48,7 +48,10 @@ def main():
                 continue
             valid_ks.append(k)
             vw_means.append(vw_m)
-            vw_stds.append(vw.get("std_auroc", 0))
+            # Use the pooled std (within-trial + between-seed variance) for VoiceFM
+            # so the error band is comparable to Frozen Whisper's trial-level std.
+            # Falls back to seed-mean std if pooled isn't present (older JSONs).
+            vw_stds.append(vw.get("std_auroc_pooled", vw.get("std_auroc", 0)))
             fw_means.append(fw_m)
             fw_stds.append(fw.get("std_auroc", 0))
 

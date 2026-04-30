@@ -46,19 +46,22 @@ def main():
                            wspace=0.30,
                            width_ratios=[1.0, 1.0])
 
-    # ── Panel A: Diagnosis category match (NN retrieval) ──────────────
+    # ── Panel A: Diagnosis category match (NN retrieval, with 95% CI) ─
     ax = fig.add_subplot(gs[0, 0])
     vfm = nn_vw["cat_match_rate"]
     fw  = nn_fw["cat_match_rate"]
-    ylim = (0, 0.75)
+    vfm_ci = nn_vw.get("cat_match_ci95", 0.0)
+    fw_ci  = nn_fw.get("cat_match_ci95",  0.0)
+    ylim = (0, 0.85)
     x = np.array([0, 1])
-    bars = ax.bar(x, [vfm, fw], 0.55, color=[BLUE, GRAY], alpha=0.9)
-    for bar, val in zip(bars, [vfm, fw]):
-        ax.text(bar.get_x() + bar.get_width() / 2,
-                bar.get_height() + (ylim[1] - ylim[0]) * 0.03,
-                f"{val:.3f}", ha="center", fontsize=13,
-                fontweight="bold" if bar == bars[0] else "normal",
-                color=BLUE if bar == bars[0] else "#6B7280")
+    ax.bar(x, [vfm, fw], 0.55, color=[BLUE, GRAY], alpha=0.9,
+           yerr=[vfm_ci, fw_ci], capsize=8,
+           error_kw=dict(ecolor="#333", lw=1.5))
+    for xi, (val, ci, color, weight) in enumerate(
+        zip([vfm, fw], [vfm_ci, fw_ci], [BLUE, "#6B7280"], ["bold", "normal"])
+    ):
+        ax.text(xi, val + ci + 0.03, f"{val:.3f}",
+                ha="center", fontsize=13, fontweight=weight, color=color)
     ax.set_xticks(x)
     ax.set_xticklabels(["VoiceFM-Whisper", "Frozen Whisper"], fontsize=11)
     ax.set_ylim(ylim)
@@ -75,14 +78,21 @@ def main():
     intra = wp["intra_mean"]
     inter = wp["inter_mean"]
     sep = wp["separation"]
+    intra_sd = wp.get("intra_sd_per_pid", 0.0)
+    inter_sd = wp.get("inter_sd_per_pid", 0.0)
 
     x = np.array([0, 1])
-    ax_b.bar([0], [intra], 0.55, color=BLUE, alpha=0.9, edgecolor="white")
-    ax_b.bar([1], [inter], 0.55, color=BLUE, alpha=0.4, edgecolor="white")
+    ax_b.bar([0], [intra], 0.55, color=BLUE, alpha=0.9, edgecolor="white",
+             yerr=[intra_sd], capsize=8,
+             error_kw=dict(ecolor="#333", lw=1.5))
+    ax_b.bar([1], [inter], 0.55, color=BLUE, alpha=0.4, edgecolor="white",
+             yerr=[inter_sd], capsize=8,
+             error_kw=dict(ecolor="#333", lw=1.5))
 
-    for xi, val in [(0, intra), (1, inter)]:
-        ax_b.text(xi, val + 0.005, f"{val:.3f}", ha="center", va="bottom",
-                  fontsize=13, fontweight="bold", color=BLUE)
+    for xi, val, sd in [(0, intra, intra_sd), (1, inter, inter_sd)]:
+        ax_b.text(xi, val + sd + 0.005, f"{val:.3f}",
+                  ha="center", va="bottom", fontsize=13,
+                  fontweight="bold", color=BLUE)
 
     ax_b.annotate("", xy=(1.35, inter), xytext=(1.35, intra),
                   arrowprops=dict(arrowstyle="<->", color="#374151", lw=1.5))
@@ -93,8 +103,8 @@ def main():
     ax_b.set_xticks(x)
     ax_b.set_xticklabels(["Same\nperson", "Different\nperson"], fontsize=13)
     ax_b.set_ylabel("Mean cosine similarity", fontsize=14)
-    y_lo = max(0.0, min(intra, inter) - 0.02)
-    ax_b.set_ylim(y_lo, max(intra, inter) + 0.05)
+    y_lo = max(0.0, min(intra, inter) - inter_sd - 0.02)
+    ax_b.set_ylim(y_lo, max(intra, inter) + max(intra_sd, inter_sd) + 0.05)
     ax_b.set_title("VoiceFM-Whisper within-participant consistency",
                    fontsize=13, pad=10)
     ax_b.grid(axis="y", alpha=0.15, linewidth=0.7)
